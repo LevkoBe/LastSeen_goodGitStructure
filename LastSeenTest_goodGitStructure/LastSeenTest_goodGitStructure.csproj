@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LastSeenApp_goodGitStructure\LastSeenApp_goodGitStructure.csproj" />
+  </ItemGroup>
+
 </Project>
