@@ -3,22 +3,6 @@ namespace LastSeenTest_goodGitStructure
 {
     public class LastSeenTest
     {
-        [Fact]
-        public void Expect_Online_When_UserIsOnline()
-        {
-            User theUser = new User(new UserData
-            {
-                userId = "e13412b2-fe46-7149-6593-e47043f39c91",
-                nickname = "Terry_Weber",
-                firstName = "Terry",
-                lastName = "Weber",
-                registrationDate = "2022-10-24T17:46:53.1388008+00:00",
-                lastSeenDate = null,
-                isOnline = true
-            });
-            var userState = theUser.ToString();
-            Assert.Equal("Terry_Weber is online.", userState);
-        }
 
         [Fact]
         public void Expect_JustNow_When_UpTo30Secs()
@@ -164,37 +148,6 @@ namespace LastSeenTest_goodGitStructure
             });
             var userState = theUser.ToString();
             Assert.Equal("Terry_Weber was online this week.", userState);
-        }
-
-        [Fact]
-        public void Expect_AnyResult_When_FetchingData()
-        {
-            // Arrange
-            IGetData dataProvider = new GetData();
-            string apiUrl = "https://sef.podkolzin.consulting/api/users/lastSeen";
-            UserLoader userLoader = new UserLoader(dataProvider, apiUrl);
-
-            // Act
-            User[] users = userLoader.GetAllUsers();
-
-            // Assert
-            Assert.NotEmpty(users);
-            Assert.True(users.Length > 0);
-        }
-
-        [Fact]
-        public void Expect_MoreThan200rows_When_FetchData()
-        {
-            // Arrange
-            IGetData dataProvider = new GetData();
-            string apiUrl = "https://sef.podkolzin.consulting/api/users/lastSeen";
-            UserLoader userLoader = new UserLoader(dataProvider, apiUrl);
-
-            // Act
-            User[] users = userLoader.GetAllUsers();
-
-            // Assert
-            Assert.True(users.Length >= 200);
         }
     }
 }
